@@ -15,7 +15,8 @@ services:
 
   server:
     build:
-      dockerfile: Dockerfile.server
+      context: .
+      dockerfile: gRPC/Dockerfile.server
     environment:
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
@@ -31,7 +32,8 @@ services:
 
   datacollector:
     build:
-      dockerfile: Dockerfile.data_collector
+      context: .
+      dockerfile: DataCollector/Dockerfile.data_collector
     environment:
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
@@ -46,7 +48,8 @@ services:
 
   alertsystem:
     build:
-      dockerfile: Dockerfile.alert_system
+      context: .
+      dockerfile: AlertSystem/Dockerfile.alert_system
     environment:
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
@@ -61,7 +64,8 @@ services:
   
   alertnotifiersystem:
     build:
-      dockerfile: Dockerfile.alert_notifier_system
+      context: .
+      dockerfile: AlertNotifier/Dockerfile.alert_notifier_system
     restart: always
     depends_on:
       - kafka-broker
